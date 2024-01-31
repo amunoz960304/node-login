@@ -3,10 +3,10 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import path from 'path';
 
-import authV1Routes from '@/routes/v1/authRoutes';
-import userV1Routes from '@/routes/v1/usersRoutes';
+import authV1Routes from '@routes/v1/authRoutes';
+import userV1Routes from '@routes/v1/usersRoutes';
 
-import dbConnection from '@/database/connection';
+import dbConnection from '@database/connection';
 
 dotenv.config();
 const app = express();

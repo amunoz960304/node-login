@@ -1,5 +1,5 @@
-import CustomError from '@/errors/CustomError';
-import UserModel, { IUser } from '../models/User';
+import CustomError from '@errors/CustomError';
+import UserModel, { IUser } from '@models/User';
 
 export const getByEmail = async (email: string): Promise<IUser|null> => {
   return await UserModel.findOne({email});

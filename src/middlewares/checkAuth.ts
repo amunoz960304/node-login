@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { Response, NextFunction } from 'express';
-import { ICustomRequest } from '@/types/custom';
-import { getById } from '@/repositories/usersRepository';
+import { ICustomRequest } from '../types/custom';
+import { getById } from '@repositories/usersRepository';
 
 const checkAuth = async (req: ICustomRequest, res: Response, next: NextFunction) => {
 
@@ -13,7 +13,16 @@ const checkAuth = async (req: ICustomRequest, res: Response, next: NextFunction)
       token = authorization.split(' ')[1];
       const decoded: any = await jwt.verify(token, process.env.JWT_SECRET ?? '');
 
-      req.user = await getById(decoded.id);
+      const user = await getById(decoded.id);
+
+      if(!user){
+        return res.status(403).json({
+          message: "Error de autenticacion"
+        });
+      }
+
+      req.user = user;
+
       return next()
     } catch (error: any) {
       return res.status(400).json({

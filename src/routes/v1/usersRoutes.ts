@@ -1,6 +1,6 @@
 import express from 'express';
-import checkAuth from '@/middlewares/checkAuth';
-import { create, deleteById, update, profile } from '@/controllers/usersController';
+import checkAuth from '@middlewares/checkAuth';
+import { create, deleteById, update, profile } from '@controllers/usersController';
 
 const routes = express.Router();
 
